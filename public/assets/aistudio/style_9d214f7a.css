@@ -1,0 +1,1864 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  width: 100%;
+}
+
+body {
+  width: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: #080e1a;
+  color: #ffffff;
+}
+
+/* =========================================
+   GLASSMORPHISM NAVBAR
+   ========================================= */
+.navbar-wrapper {
+  position: fixed;
+  top: 1.5rem;
+  left: 0;
+  width: 100%;
+  padding: 0 clamp(1.2rem, 4vw, 3.5rem);
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  pointer-events: none; /* Allows clicks only on the inner glass nav */
+}
+
+.glass-navbar {
+  width: 100%;
+  max-width: 1400px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 clamp(1.2rem, 2.5vw, 2.4rem);
+  pointer-events: auto;
+
+  /* Pure Frosted White Glassmorphism */
+  background: rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  border-radius: 50px;
+  box-shadow: 
+    0 8px 32px 0 rgba(0, 0, 0, 0.12),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.6),
+    inset 0 -1px 1px 0 rgba(255, 255, 255, 0.2);
+  transition: all 0.35s ease;
+}
+
+.glass-navbar:hover {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.6);
+  box-shadow: 
+    0 12px 36px 0 rgba(0, 0, 0, 0.18),
+    inset 0 1px 2px 0 rgba(255, 255, 255, 0.8);
+}
+
+/* Brand Logo & Text (Left) */
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  user-select: none;
+}
+
+/* Enlarged Logo */
+.nav-logo-img {
+  width: clamp(40px, 3.4vw, 52px);
+  height: clamp(40px, 3.4vw, 52px);
+  object-fit: contain;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.25));
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.3s ease;
+}
+
+.nav-brand:hover .nav-logo-img {
+  transform: rotate(18deg) scale(1.12);
+  filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.8));
+}
+
+.brand-text {
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: clamp(1.15rem, 1.55vw, 1.45rem);
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #000000; /* Full solid black */
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-block;
+}
+
+.nav-brand:hover .brand-text {
+  color: #000000;
+  letter-spacing: 0.13em;
+  transform: translateY(-1px);
+}
+
+/* Hamburger Button (Right) with matching Frosted Glass styling */
+.hamburger-btn {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  cursor: pointer;
+  outline: none;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.5), 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.hamburger-btn:hover {
+  background: rgba(255, 255, 255, 0.35);
+  border-color: rgba(255, 255, 255, 0.7);
+  transform: scale(1.08);
+}
+
+.hamburger-bar {
+  width: 20px;
+  height: 2.2px;
+  background-color: #000000; /* Black hamburger lines */
+  border-radius: 2px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Hamburger active transformation */
+.hamburger-btn.active .bar-1 {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.hamburger-btn.active .bar-2 {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.hamburger-btn.active .bar-3 {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* =========================================
+   RIGHT-SIDE GLASSMORPHISM DRAWER
+   ========================================= */
+.drawer-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 200;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.drawer-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.glass-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: clamp(300px, 32vw, 440px);
+  height: 100vh;
+  z-index: 201;
+
+  /* Pure Frosted Glassmorphism Panel */
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(36px);
+  -webkit-backdrop-filter: blur(36px);
+  border-left: 1.5px solid rgba(255, 255, 255, 0.35);
+  box-shadow: -10px 0 35px rgba(0, 0, 0, 0.25);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2.5rem 2.2rem;
+  transform: translateX(100%);
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-drawer.active {
+  transform: translateX(0);
+}
+
+/* Drawer Header */
+.drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.drawer-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #94a3b8;
+}
+
+.close-drawer-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  color: #ffffff;
+  font-size: 1.4rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.25s ease;
+}
+
+.close-drawer-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  transform: rotate(90deg) scale(1.08);
+}
+
+/* Drawer Navigation Links */
+.drawer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin: auto 0;
+}
+
+.drawer-item {
+  transform: translateX(30px);
+  opacity: 0;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+}
+
+.glass-drawer.active .drawer-item:nth-child(1) {
+  transition-delay: 0.12s;
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.glass-drawer.active .drawer-item:nth-child(2) {
+  transition-delay: 0.20s;
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.glass-drawer.active .drawer-item:nth-child(3) {
+  transition-delay: 0.28s;
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.drawer-link {
+  display: flex;
+  align-items: baseline;
+  gap: 1.2rem;
+  text-decoration: none;
+  padding: 0.8rem 1rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.drawer-link:hover,
+.drawer-link.active {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateX(8px);
+}
+
+.drawer-link.active .link-text {
+  text-shadow: 0 0 12px rgba(255, 255, 255, 0.9);
+}
+
+.link-number {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 0.1em;
+  font-family: monospace;
+}
+
+.link-text {
+  font-size: clamp(1.2rem, 1.8vw, 1.55rem);
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+
+.drawer-link:hover .link-text {
+  color: #ffffff;
+  text-shadow: 0 0 12px rgba(255, 255, 255, 0.8);
+}
+
+/* Drawer Footer */
+.drawer-footer {
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.footer-role {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #e2e8f0;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.drawer-socials {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  letter-spacing: 0.08em;
+}
+
+/* =========================================
+   HERO SECTION & 3D LAYERS
+   ========================================= */
+.hero-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 3;
+  /* Industry standard alpha feathering: smoothly dissolves into Section 2 with zero artificial lines or black bars */
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 calc(100% - clamp(70px, 11vh, 130px)), transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 calc(100% - clamp(70px, 11vh, 130px)), transparent 100%);
+}
+
+.hero-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Layer 1: Background */
+.hero-bg {
+  object-fit: cover;
+  object-position: center bottom;
+  z-index: 1;
+}
+
+/* Layer 2: Text Layer (Behind Subject) */
+.hero-text-layer {
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Layer 3: Foreground Person Cutout */
+.hero-foreground {
+  object-fit: cover;
+  object-position: center bottom;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* Layer 4: Interactive Matrix Code Canvas */
+.hero-canvas {
+  z-index: 4;
+  pointer-events: none;
+}
+
+/* Master typography container */
+.hero-typography-container {
+  position: absolute;
+  top: 19.5%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: fit-content;
+  max-width: 95vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Main title "MUZAMMIL" */
+.title-muzammil {
+  font-size: clamp(3.2rem, 7.8vw, 8.6rem);
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.28em;
+  margin-right: -0.28em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  line-height: 1;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
+  user-select: none;
+}
+
+/* Subtitle Group */
+.subtitle-group {
+  position: absolute;
+  top: calc(100% + clamp(1.6rem, 2.8vw, 3.2rem));
+  left: 56.5%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: clamp(1rem, 1.6vw, 1.8rem);
+  white-space: nowrap;
+  user-select: none;
+}
+
+.subtitle-lockup {
+  display: flex;
+  align-items: center;
+  gap: clamp(14px, 1.6vw, 24px);
+}
+
+.accent-line {
+  display: inline-block;
+  width: clamp(36px, 4.2vw, 58px);
+  height: 2px;
+  background-color: rgba(255, 255, 255, 0.85);
+  border-radius: 2px;
+  flex-shrink: 0;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+.role-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.role-text span {
+  font-size: clamp(0.75rem, 1.22vw, 1.25rem);
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: 0.26em;
+  margin-right: -0.26em;
+  text-transform: uppercase;
+  line-height: 1.25;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Hero CTA Button "MY WORK" */
+.hero-cta-btn {
+  margin-left: clamp(50px, 5.8vw, 82px); /* Perfectly aligns underneath the role text */
+  margin-top: 0.2rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  width: fit-content;
+  padding: 0.72rem 1.65rem;
+  background: linear-gradient(135deg, #FFE53B 0%, #FF9900 55%, #FF7A00 100%);
+  border: 1.5px solid rgba(255, 255, 255, 0.75);
+  border-radius: 30px;
+  color: #06090e; /* Deep rich dark text for high contrast */
+  text-decoration: none;
+  font-size: clamp(0.74rem, 1.02vw, 0.88rem);
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  pointer-events: auto; /* Enables clicking above background layers */
+  cursor: pointer;
+  box-shadow: 
+    0 8px 26px rgba(255, 153, 0, 0.42),
+    0 2px 8px rgba(0, 0, 0, 0.25),
+    inset 0 1px 1.5px rgba(255, 255, 255, 0.9),
+    inset 0 -1px 2px rgba(217, 100, 0, 0.3);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-cta-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+  transition: transform 0.6s ease;
+  pointer-events: none;
+}
+
+.hero-cta-btn:hover {
+  background: linear-gradient(135deg, #FFF176 0%, #FFB300 50%, #FF8F00 100%);
+  border-color: #ffffff;
+  color: #000000;
+  transform: translateY(-2.5px) scale(1.05);
+  box-shadow: 
+    0 12px 36px rgba(255, 153, 0, 0.62),
+    0 0 24px rgba(255, 215, 0, 0.45),
+    inset 0 1px 2px rgba(255, 255, 255, 1);
+}
+
+.hero-cta-btn:hover::before {
+  transform: translateX(200%);
+}
+
+.cta-arrow {
+  stroke: #06090e;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), stroke 0.3s ease;
+}
+
+.hero-cta-btn:hover .cta-arrow {
+  stroke: #000000;
+  transform: translateX(4px);
+}
+
+/* =========================================
+   RESPONSIVE DESIGN
+   ========================================= */
+@media (max-width: 900px) {
+  .navbar-wrapper {
+    top: 1rem;
+    padding: 0 1.2rem;
+  }
+
+  .glass-navbar {
+    height: 58px;
+  }
+
+  .hero-typography-container {
+    top: 17%;
+  }
+
+  .title-muzammil {
+    letter-spacing: 0.2em;
+    margin-right: -0.2em;
+  }
+
+  .subtitle-group {
+    left: 52%;
+    top: calc(100% + 2rem);
+  }
+
+  .glass-drawer {
+    width: min(340px, 85vw);
+    padding: 2rem 1.6rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .navbar-wrapper {
+    top: 0.75rem;
+    padding: 0 0.8rem;
+  }
+
+  .glass-navbar {
+    height: 52px;
+    padding: 0 1rem;
+    border-radius: 30px;
+  }
+
+  .brand-text {
+    letter-spacing: 0.18em;
+  }
+
+  .hamburger-btn {
+    width: 38px;
+    height: 38px;
+  }
+
+  .hero-typography-container {
+    top: 15%;
+    width: 90vw;
+  }
+
+  .title-muzammil {
+    font-size: clamp(2rem, 9.5vw, 3.2rem);
+    letter-spacing: 0.15em;
+    margin-right: -0.15em;
+  }
+
+  .subtitle-group {
+    position: relative;
+    left: auto;
+    top: auto;
+    margin-top: 1.8rem;
+    align-self: flex-end;
+    gap: 1.2rem;
+  }
+
+  .hero-cta-btn {
+    margin-left: 0;
+  }
+
+  .accent-line {
+    width: 28px;
+  }
+
+  .role-text span {
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    margin-right: -0.18em;
+  }
+
+  .glass-drawer {
+    width: 88vw;
+    padding: 1.8rem 1.4rem;
+  }
+}
+
+/* =========================================
+   REUSABLE BRAND UTILITIES & GRADIENTS
+   ========================================= */
+.text-gradient-gold {
+  background: linear-gradient(135deg, #FFE53B 0%, #FFA000 50%, #FF7A00 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
+}
+
+/* =========================================
+   BRAND SECTIONS (Visual Showcase Section)
+   ========================================= */
+.brand-section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  border: none;
+  outline: none;
+  margin: 0;
+}
+
+.section-why {
+  position: relative;
+  min-height: 100vh;
+  /* Seamless photographic crossfade: overlaps directly under the hero's feathered bottom edge */
+  margin-top: calc(-1 * clamp(70px, 11vh, 130px));
+  z-index: 2;
+  background-image: url('projects-bg.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  border: none;
+  outline: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: clamp(10.5rem, 19vh, 14.5rem) clamp(1.5rem, 4vw, 3rem) clamp(7rem, 13vh, 10rem);
+  /* Seamless bottom feathering to eliminate any seam/line between Section 2 and Section 3 */
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 calc(100% - clamp(80px, 13vh, 150px)), transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 calc(100% - clamp(80px, 13vh, 150px)), transparent 100%);
+}
+
+.section-container {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  z-index: 2;
+}
+
+.section-header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.section-title {
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: clamp(1.9rem, 3.6vw, 3.1rem);
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6), 0 2px 6px rgba(0, 0, 0, 0.75);
+  user-select: none;
+}
+
+/* =========================================
+   AUTHENTIC LIQUID GLASSMORPHIC CARDS
+   ========================================= */
+
+.glass-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.5rem, 2.5vw, 2.5rem);
+  margin-top: clamp(3rem, 5.5vh, 4.5rem);
+  width: 100%;
+  align-items: stretch;
+}
+
+.glass-card {
+  position: relative;
+  border-radius: 34px;
+  padding: clamp(2rem, 2.6vw, 2.5rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  
+  /* Authentic Multi-Layer Liquid Glass Gradient */
+  background: linear-gradient(
+    168deg,
+    rgba(255, 255, 255, 0.68) 0%,
+    rgba(255, 255, 255, 0.42) 30%,
+    rgba(255, 255, 255, 0.72) 70%,
+    rgba(255, 255, 255, 0.90) 100%
+  );
+  
+  /* Optical Glass Refraction */
+  backdrop-filter: blur(30px) saturate(190%) brightness(105%);
+  -webkit-backdrop-filter: blur(30px) saturate(190%) brightness(105%);
+  
+  /* Pristine Specular Glass Rim */
+  border: 1.5px solid rgba(255, 255, 255, 0.88);
+  
+  /* 3D Glass Surface Reflections & Soft Ambient Shadows */
+  box-shadow:
+    inset 0 2px 2.5px 0 rgba(255, 255, 255, 0.95),
+    inset 1.5px 0 3px 0 rgba(255, 255, 255, 0.7),
+    inset -1.5px 0 2px 0 rgba(255, 255, 255, 0.35),
+    inset 0 -2.5px 4px 0 rgba(255, 255, 255, 0.5),
+    0 22px 48px -12px rgba(15, 23, 42, 0.16),
+    0 8px 20px -4px rgba(15, 23, 42, 0.08);
+    
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.4s ease;
+  overflow: hidden;
+}
+
+/* Glass Surface Diagonal Sheen */
+.glass-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.6) 0%,
+    rgba(255, 255, 255, 0.12) 32%,
+    rgba(255, 255, 255, 0) 55%,
+    rgba(255, 255, 255, 0.25) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Curved Lens Refractive Corner Flare */
+.glass-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 85%;
+  height: 48%;
+  background: radial-gradient(
+    ellipse at 25% 15%,
+    rgba(255, 255, 255, 0.7) 0%,
+    rgba(255, 255, 255, 0.15) 50%,
+    transparent 80%
+  );
+  pointer-events: none;
+  border-radius: 34px 34px 0 0;
+  z-index: 1;
+}
+
+.glass-card:hover {
+  transform: translateY(-8px);
+  box-shadow:
+    inset 0 2.5px 3px 0 rgba(255, 255, 255, 1),
+    inset 2px 0 3px 0 rgba(255, 255, 255, 0.8),
+    inset -1.5px 0 2px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -2.5px 4px 0 rgba(255, 255, 255, 0.6),
+    0 32px 64px -14px rgba(15, 23, 42, 0.22),
+    0 12px 28px -4px rgba(15, 23, 42, 0.12);
+  border-color: rgba(255, 255, 255, 1);
+}
+
+.card-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.card-tag-wrap {
+  height: 38px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.1rem;
+}
+
+.card-tag {
+  display: inline-flex;
+  align-items: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(0.72rem, 0.85vw, 0.78rem);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #0f172a;
+  text-transform: uppercase;
+  white-space: nowrap;
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  padding: 0.38rem 0.85rem;
+  border-radius: 999px;
+  box-shadow: 
+    inset 0 1px 2px rgba(255, 255, 255, 0.95),
+    0 3px 10px rgba(15, 23, 42, 0.05);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.card-heading {
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: clamp(1.35rem, 1.8vw, 1.65rem);
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  min-height: 4.5rem;
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.card-desc {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: #1e293b;
+  font-weight: 500;
+  min-height: 5.5rem;
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 1.6rem;
+}
+
+.card-action-wrap {
+  margin-bottom: 1.6rem;
+  width: 100%;
+}
+
+.card-action-btn {
+  width: 100%;
+  padding: 0.88rem 1.4rem;
+  background-color: #1e242c;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 14px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.18);
+  transition: background-color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+
+.card-action-btn:hover {
+  background-color: #0a0e13;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.28);
+}
+
+.card-action-btn:active {
+  transform: translateY(0);
+}
+
+.card-features {
+  list-style: none;
+  padding: 1.3rem 0 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.45);
+  flex-grow: 1;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.92rem;
+  color: #1e293b;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.feature-icon {
+  flex-shrink: 0;
+  color: #1e242c;
+  opacity: 0.85;
+}
+
+.card-footer-note {
+  margin-top: 1.6rem;
+  font-size: 0.84rem;
+  color: #64748b;
+  font-weight: 500;
+  text-align: left;
+}
+
+/* Responsive adjustments for glass cards */
+@media (max-width: 1024px) {
+  .glass-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .glass-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 1.6rem;
+  }
+  
+  .glass-card {
+    min-height: auto;
+    padding: 2.2rem 1.8rem;
+    border-radius: 28px;
+  }
+
+  .card-heading,
+  .card-desc {
+    min-height: auto;
+  }
+}
+
+/* =========================================
+   ABOUT US PAGE STYLES
+   ========================================= */
+
+.about-page-body {
+  background-color: #080e1a;
+  color: #ffffff;
+  min-height: 100vh;
+}
+
+.about-main-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background-image: url('projects-bg.jpg');
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: cover;
+  background-attachment: fixed;
+  padding: clamp(7.5rem, 14vh, 10rem) clamp(1.5rem, 4vw, 3.5rem) 6rem;
+}
+
+.about-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(8, 14, 26, 0.6) 0%,
+    rgba(8, 14, 26, 0.38) 35%,
+    rgba(8, 14, 26, 0.7) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.about-container {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(3.2rem, 5.5vh, 4.8rem);
+}
+
+/* About Hero Header */
+.about-hero-section {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 920px;
+  margin: 0 auto;
+}
+
+.about-badge-wrap {
+  margin-bottom: 1.3rem;
+}
+
+.about-badge {
+  display: inline-flex;
+  align-items: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: #ffffff;
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.16);
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  padding: 0.45rem 1.2rem;
+  border-radius: 999px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.6);
+}
+
+.about-hero-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(1.9rem, 3.5vw, 3rem);
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.08em;
+  line-height: 1.22;
+  text-transform: uppercase;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.65);
+  margin-bottom: 1.3rem;
+}
+
+.about-hero-subtitle {
+  font-size: clamp(0.86rem, 1.02vw, 0.96rem);
+  line-height: 1.68;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 760px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+  font-weight: 450;
+}
+
+/* Story / Philosophy Liquid Glass Card */
+.glass-story-card {
+  position: relative;
+  background: linear-gradient(
+    165deg,
+    rgba(255, 255, 255, 0.72) 0%,
+    rgba(255, 255, 255, 0.48) 35%,
+    rgba(255, 255, 255, 0.78) 75%,
+    rgba(255, 255, 255, 0.92) 100%
+  );
+  backdrop-filter: blur(30px) saturate(190%) brightness(105%);
+  -webkit-backdrop-filter: blur(30px) saturate(190%) brightness(105%);
+  border: 1.5px solid rgba(255, 255, 255, 0.9);
+  border-radius: 34px;
+  padding: clamp(2.2rem, 3.8vw, 3.4rem);
+  box-shadow:
+    inset 0 2px 2.5px 0 rgba(255, 255, 255, 0.95),
+    inset 1.5px 0 3px 0 rgba(255, 255, 255, 0.7),
+    inset -1.5px 0 2px 0 rgba(255, 255, 255, 0.35),
+    inset 0 -2.5px 4px 0 rgba(255, 255, 255, 0.5),
+    0 25px 50px -12px rgba(15, 23, 42, 0.2),
+    0 8px 24px -4px rgba(15, 23, 42, 0.1);
+  overflow: hidden;
+}
+
+.glass-story-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.6) 0%,
+    rgba(255, 255, 255, 0.12) 35%,
+    transparent 60%,
+    rgba(255, 255, 255, 0.25) 100%
+  );
+  pointer-events: none;
+}
+
+.story-content-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: clamp(2rem, 4vw, 3.2rem);
+  align-items: center;
+}
+
+.story-tag {
+  display: inline-block;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #475569;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.story-heading {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(1.55rem, 2.3vw, 2.1rem);
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.1rem;
+}
+
+.story-paragraph {
+  font-size: 1rem;
+  line-height: 1.72;
+  color: #1e293b;
+  margin-bottom: 1rem;
+  font-weight: 450;
+}
+
+.story-paragraph:last-of-type {
+  margin-bottom: 0;
+}
+
+.story-highlights-col {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.1rem;
+}
+
+.story-metric-box {
+  background: rgba(255, 255, 255, 0.58);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  padding: 1.3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.95), 0 6px 18px rgba(15, 23, 42, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.story-metric-box:hover {
+  transform: translateY(-4px);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 1), 0 10px 24px rgba(15, 23, 42, 0.1);
+}
+
+.metric-number {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(1.5rem, 2.1vw, 2rem);
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+}
+
+.metric-label {
+  font-size: 0.82rem;
+  line-height: 1.4;
+  color: #475569;
+  font-weight: 500;
+}
+
+/* Services Section on About Page */
+.services-header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.services-subtitle-tag {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: rgba(255, 255, 255, 0.85);
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.services-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(1.7rem, 3vw, 2.5rem);
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+}
+
+.about-services-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(1.6rem, 2.6vw, 2.6rem);
+}
+
+.about-services-grid .card-heading {
+  min-height: 3.8rem;
+}
+
+.about-services-grid .card-desc {
+  min-height: 4.8rem;
+}
+
+/* CTA Card on About Page */
+.cta-glass-card {
+  text-align: center;
+  padding: clamp(2.8rem, 4.5vw, 4rem) clamp(1.8rem, 3.5vw, 3rem);
+}
+
+.cta-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 760px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cta-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  margin-bottom: 1rem;
+}
+
+.cta-description {
+  font-size: 1.02rem;
+  line-height: 1.7;
+  color: #1e293b;
+  margin-bottom: 2rem;
+  font-weight: 450;
+}
+
+.cta-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+
+.cta-btn-primary {
+  padding: 0.95rem 2rem;
+  background-color: #1e242c;
+  color: #ffffff;
+  border-radius: 14px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.2);
+  transition: background-color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+}
+
+.cta-btn-primary:hover {
+  background-color: #0a0e13;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.3);
+}
+
+.cta-btn-secondary {
+  padding: 0.95rem 2rem;
+  background: rgba(255, 255, 255, 0.65);
+  color: #0f172a;
+  border: 1.5px solid rgba(255, 255, 255, 0.9);
+  border-radius: 14px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
+  transition: all 0.25s ease;
+}
+
+.cta-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.95);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.12);
+}
+
+/* Responsive Breakpoints for About Page */
+@media (max-width: 1024px) {
+  .story-content-grid {
+    grid-template-columns: 1fr;
+    gap: 2.2rem;
+  }
+
+  .about-services-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-services-grid .card-heading,
+  .about-services-grid .card-desc {
+    min-height: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .story-highlights-col {
+    grid-template-columns: 1fr;
+  }
+
+  .cta-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .cta-btn-primary,
+  .cta-btn-secondary {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* =========================================
+   MY PORTFOLIO & INTEGRATED SCENIC FOOTER
+   (Single Unified Golden Sunset Landscape)
+   ========================================= */
+
+.section-portfolio {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  margin-top: calc(-1 * clamp(80px, 13vh, 150px));
+  z-index: 1;
+  background-image: url('portfolio-bg.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: clamp(10.5rem, 18vh, 14rem);
+  padding-bottom: 0;
+  padding-left: 0;
+  padding-right: 0;
+  border: none;
+  outline: none;
+  overflow: hidden;
+}
+
+.portfolio-content-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 clamp(1.5rem, 4vw, 3rem);
+  z-index: 2;
+}
+
+/* =========================================
+   AUTHENTIC SCENIC ILLUSTRATION FOOTER
+   (Seamlessly Integrated with Section 3)
+   ========================================= */
+
+.scene-footer {
+  position: relative;
+  width: 100%;
+  background: transparent; /* Seamless: unifies directly with the landscape background */
+  margin-top: clamp(3.5rem, 7vh, 6rem);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+}
+
+.about-page-body .scene-footer {
+  background-image: url('portfolio-bg.png');
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: cover;
+  margin-top: 0;
+}
+
+/* Scenic Typography Stage */
+.scene-typography-stage {
+  position: relative;
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(2rem, 4vh, 4rem) clamp(1.5rem, 4vw, 3rem) clamp(2.5rem, 5vh, 4.5rem);
+  z-index: 2;
+  user-select: none;
+  pointer-events: none;
+}
+
+.scene-brand-wordmark {
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: clamp(4.6rem, 17.2vw, 16rem);
+  font-weight: 900;
+  color: #ffffff;
+  letter-spacing: -0.04em;
+  text-transform: lowercase; /* Matches inspiration lowercase aesthetic "muzammil" */
+  line-height: 0.82;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  white-space: nowrap;
+  text-shadow: 
+    0 4px 24px rgba(0, 0, 0, 0.28),
+    0 1px 3px rgba(0, 0, 0, 0.35);
+  filter: drop-shadow(0 12px 32px rgba(30, 20, 50, 0.25));
+  transition: transform 0.4s ease;
+}
+
+/* Bottom Glass Bar Container (Exact Inspiration Layout) */
+.scene-footer-bottom-wrap {
+  position: relative;
+  width: 100%;
+  z-index: 3;
+  /* Translucent frosted glass effect over the scenic meadow bottom */
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(148, 135, 163, 0.45) 40%,
+    rgba(110, 95, 130, 0.72) 100%
+  );
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-top: 1px solid rgba(255, 255, 255, 0.35);
+  padding: clamp(1.2rem, 2.2vh, 1.8rem) clamp(1.5rem, 4vw, 3.5rem) clamp(1rem, 1.8vh, 1.4rem);
+}
+
+.scene-footer-nav-row {
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+/* Center/Left Social Media & Gmail Group */
+.scene-footer-socials {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.footer-social-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0.38rem 0.85rem;
+  background: rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 999px;
+  color: #ffffff;
+  font-size: clamp(0.74rem, 0.85vw, 0.82rem);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15), inset 0 1px 1px rgba(255, 255, 255, 0.5);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.footer-social-pill:hover {
+  background: rgba(255, 255, 255, 0.4);
+  border-color: rgba(255, 255, 255, 0.8);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.8);
+  color: #ffffff;
+}
+
+.footer-email-pill {
+  background: rgba(255, 243, 205, 0.28);
+  border-color: rgba(255, 230, 150, 0.6);
+  color: #fff9e6;
+}
+
+.footer-email-pill:hover {
+  background: rgba(255, 240, 180, 0.45);
+  border-color: #ffffff;
+  color: #ffffff;
+}
+
+/* Right Group (Quick Links: Home, Showcase, About, Contact) */
+.scene-footer-right {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.9rem, 1.6vw, 1.8rem);
+  flex-wrap: wrap;
+  font-size: clamp(0.8rem, 0.95vw, 0.9rem);
+  font-weight: 700;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+.scene-footer-right a {
+  color: #ffffff;
+  text-decoration: none;
+  transition: color 0.2s ease, transform 0.2s ease, text-shadow 0.2s ease;
+}
+
+.scene-footer-right a:hover {
+  color: #FFE53B;
+  transform: translateY(-1px);
+  text-shadow: 0 0 10px rgba(255, 229, 59, 0.8);
+}
+
+/* Bottom Niche Micro-Disclaimer */
+.scene-footer-disclaimer-wrap {
+  width: 100%;
+  max-width: 1300px;
+  margin: 0.85rem auto 0;
+  padding-top: 0.65rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.scene-footer-disclaimer-text {
+  font-size: clamp(0.68rem, 0.76vw, 0.76rem);
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.82);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+  font-weight: 450;
+  margin: 0;
+}
+
+/* =========================================
+   CONTACT PAGE & FREELANCE INQUIRY FORM
+   (Extracting Homepage & About Design Tokens)
+   ========================================= */
+
+.contact-page-body {
+  background-color: #080e1a;
+  color: #ffffff;
+  min-height: 100vh;
+}
+
+.contact-main-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background-image: url('projects-bg.jpg');
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: cover;
+  background-attachment: fixed;
+  padding: clamp(7.5rem, 14vh, 10rem) clamp(1.5rem, 4vw, 3.5rem) 6rem;
+}
+
+.contact-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(8, 14, 26, 0.65) 0%,
+    rgba(8, 14, 26, 0.42) 35%,
+    rgba(8, 14, 26, 0.75) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.contact-container {
+  position: relative;
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(3rem, 5vh, 4.5rem);
+}
+
+/* Contact Hero Header */
+.contact-hero-section {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.contact-badge-wrap {
+  margin-bottom: 1.3rem;
+}
+
+.contact-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: #ffffff;
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.16);
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  padding: 0.45rem 1.2rem;
+  border-radius: 999px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.6);
+}
+
+.contact-hero-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(1.9rem, 3.6vw, 3.2rem);
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.08em;
+  line-height: 1.22;
+  text-transform: uppercase;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.65);
+  margin-bottom: 1.2rem;
+}
+
+.contact-hero-subtitle {
+  font-size: clamp(0.88rem, 1.05vw, 1rem);
+  line-height: 1.68;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 760px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+  font-weight: 450;
+}
+
+/* 1-Column Centered Contact Layout */
+.contact-layout-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+/* Direct Info & Freelance Availability Card */
+.contact-info-panel {
+  position: relative;
+  width: 100%;
+  max-width: 680px;
+  background: linear-gradient(
+    168deg,
+    rgba(255, 255, 255, 0.72) 0%,
+    rgba(255, 255, 255, 0.48) 35%,
+    rgba(255, 255, 255, 0.78) 75%,
+    rgba(255, 255, 255, 0.92) 100%
+  );
+  backdrop-filter: blur(30px) saturate(190%) brightness(105%);
+  -webkit-backdrop-filter: blur(30px) saturate(190%) brightness(105%);
+  border: 1.5px solid rgba(255, 255, 255, 0.9);
+  border-radius: 34px;
+  padding: clamp(2.2rem, 3.8vw, 3.2rem);
+  box-shadow:
+    inset 0 2px 2.5px 0 rgba(255, 255, 255, 0.95),
+    inset 1.5px 0 3px 0 rgba(255, 255, 255, 0.7),
+    inset -1.5px 0 2px 0 rgba(255, 255, 255, 0.35),
+    0 25px 50px -12px rgba(15, 23, 42, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+.info-header-block h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(1.5rem, 2.2vw, 1.9rem);
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.6rem;
+}
+
+.info-header-block p {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: #334155;
+  font-weight: 500;
+}
+
+.contact-live-status {
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  border-radius: 18px;
+  padding: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.05);
+}
+
+.status-dot-pulse {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #10b981;
+  box-shadow: 0 0 10px #10b981;
+  animation: pulse-dot 2s infinite;
+  flex-shrink: 0;
+}
+
+.status-text-lockup strong {
+  display: block;
+  font-size: 0.88rem;
+  color: #0f172a;
+  font-weight: 700;
+}
+
+.status-text-lockup span {
+  font-size: 0.78rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+/* Contact Detail Items */
+.contact-detail-items {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contact-item-box {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  padding: 0.95rem 1.2rem;
+  border-radius: 16px;
+  text-decoration: none;
+  color: #0f172a;
+  transition: all 0.25s ease;
+}
+
+.contact-item-box:hover {
+  background: rgba(255, 255, 255, 0.92);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+}
+
+.contact-item-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: #1e242c;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.contact-item-content span {
+  display: block;
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.contact-item-content strong {
+  display: block;
+  font-size: 0.92rem;
+  color: #0f172a;
+  font-weight: 700;
+  word-break: break-all;
+}
+
+/* Freelance Highlights List */
+.freelance-perks-list {
+  list-style: none;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.6);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.freelance-perks-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.perk-check-icon {
+  color: #d97706;
+  flex-shrink: 0;
+}
+
+/* Submit Action Button */
+.form-submit-btn {
+  width: 100%;
+  padding: 1rem 1.8rem;
+  background: linear-gradient(135deg, #FFE53B 0%, #FF9900 55%, #FF7A00 100%);
+  color: #06090e;
+  border: 1.5px solid rgba(255, 255, 255, 0.85);
+  border-radius: 30px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  box-shadow: 0 8px 24px rgba(255, 153, 0, 0.42);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  margin-top: 0.5rem;
+}
+
+.form-submit-btn:hover {
+  transform: translateY(-2.5px) scale(1.02);
+  box-shadow: 0 12px 32px rgba(255, 153, 0, 0.6);
+  color: #000000;
+}
+
+/* Responsive adjustments for Contact Page */
+@media (max-width: 640px) {
+  .contact-info-panel {
+    padding: 1.8rem 1.4rem;
+    border-radius: 26px;
+  }
+}
+
+
+
+
+
+
+
+

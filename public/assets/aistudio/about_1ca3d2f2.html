@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Muzammil - UI/UX Designer & Full-Stack Developer</title>
+  <meta name="description" content="Learn about Muzammil Khan — Professional Web Designer & Full-Stack Developer building high-performance 3D websites, Node.js backends, and Google local SEO for growing businesses.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Outfit:wght@600;700;800;900&family=Syne:wght@700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="about-page-body">
+  <!-- Glassmorphism Navbar -->
+  <header class="navbar-wrapper">
+    <nav class="glass-navbar">
+      <!-- Left side: Brand Logo & Name -->
+      <a href="index.html" class="nav-brand">
+        <img src="logo.png" alt="Muzammil Logo" class="nav-logo-img" />
+        <span class="brand-text">MUZAMMIL</span>
+      </a>
+
+      <!-- Right side: Universal Hamburger Button -->
+      <button class="hamburger-btn" id="hamburger-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span class="hamburger-bar bar-1"></span>
+        <span class="hamburger-bar bar-2"></span>
+        <span class="hamburger-bar bar-3"></span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- Slide-in Glassmorphism Drawer Menu -->
+  <div class="drawer-overlay" id="drawer-overlay"></div>
+  <aside class="glass-drawer" id="glass-drawer" aria-hidden="true">
+    <div class="drawer-header">
+      <span class="drawer-title">Navigation</span>
+      <button class="close-drawer-btn" id="close-drawer-btn" aria-label="Close menu">&times;</button>
+    </div>
+
+    <ul class="drawer-links">
+      <li class="drawer-item">
+        <a href="index.html#hero" class="drawer-link">
+          <span class="link-number">01</span>
+          <span class="link-text">Home</span>
+        </a>
+      </li>
+      <li class="drawer-item">
+        <a href="index.html#portfolio" class="drawer-link">
+          <span class="link-number">02</span>
+          <span class="link-text">Showcase</span>
+        </a>
+      </li>
+      <li class="drawer-item">
+        <a href="about.html" class="drawer-link active">
+          <span class="link-number">03</span>
+          <span class="link-text">About Us</span>
+        </a>
+      </li>
+      <li class="drawer-item">
+        <a href="contact.html" class="drawer-link">
+          <span class="link-number">04</span>
+          <span class="link-text">Contact</span>
+        </a>
+      </li>
+    </ul>
+
+    <div class="drawer-footer">
+      <p class="footer-role">UI/UX & Web Designer</p>
+      <div class="drawer-socials">
+        <span>Available for Freelance & Projects</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content Wrapper with Landscape Background -->
+  <main class="about-main-wrapper">
+    <div class="about-bg-overlay"></div>
+
+    <div class="about-container">
+      <!-- Section 1: Page Hero Header -->
+      <section class="about-hero-section">
+        <div class="about-badge-wrap">
+          <span class="about-badge">ABOUT MUZAMMIL KHAN</span>
+        </div>
+        <h1 class="about-hero-title">
+          CREATING HIGH-PERFORMANCE 3D & FULL-STACK DIGITAL EXPERIENCES
+        </h1>
+        <p class="about-hero-subtitle">
+          I craft custom-built websites for local businesses and modern brands, combining captivating 3D visual design, rock-solid Node.js backend logic, and Google-ranking SEO that converts visitors into customers.
+        </p>
+      </section>
+
+      <!-- Section 2: Story & Mission Liquid Glass Card -->
+      <section class="about-story-section">
+        <article class="glass-story-card">
+          <div class="story-content-grid">
+            <div class="story-col">
+              <span class="story-tag">MY PHILOSOPHY</span>
+              <h2 class="story-heading">Design that inspires. Code that performs.</h2>
+              <p class="story-paragraph">
+                I believe a website shouldn't just be an online brochure — it should be your highest-performing digital engine. Many websites suffer from slow load speeds, generic cookie-cutter templates, and zero search visibility.
+              </p>
+              <p class="story-paragraph">
+                My approach unites creative UI/UX craftsmanship with engineering discipline. Every website is built from the ground up to load blisteringly fast, look breathtaking on any device, and rank at the top of Google for local businesses.
+              </p>
+            </div>
+            <div class="story-col story-highlights-col">
+              <div class="story-metric-box">
+                <span class="metric-number">95+</span>
+                <span class="metric-label">Google PageSpeed score standard</span>
+              </div>
+              <div class="story-metric-box">
+                <span class="metric-number">3D</span>
+                <span class="metric-label">Immersive visual & interactive depth</span>
+              </div>
+              <div class="story-metric-box">
+                <span class="metric-number">Node.js</span>
+                <span class="metric-label">Full-stack backend & API architecture</span>
+              </div>
+              <div class="story-metric-box">
+                <span class="metric-number">Local SEO</span>
+                <span class="metric-label">Optimized for Google local business ranking</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- Section 3: Core Service Pillars (4 Glassmorphic Cards) -->
+      <section class="about-services-section">
+        <div class="services-header">
+          <span class="services-subtitle-tag">WHAT I OFFER</span>
+          <h2 class="services-title">COMPREHENSIVE WEB CREATION SERVICES</h2>
+        </div>
+
+        <div class="about-services-grid">
+          <!-- Service Card 1: 3D Web Design -->
+          <article class="glass-card">
+            <div class="card-content">
+              <div class="card-tag-wrap">
+                <span class="card-tag">01 — 3D & Responsive Web Design</span>
+              </div>
+              <h3 class="card-heading">Immersive interfaces on every screen.</h3>
+              <p class="card-desc">
+                I design captivating 3D web experiences and fluid interfaces that stand out from competitors and engage visitors across mobile, tablet, and desktop.
+              </p>
+
+              <ul class="card-features">
+                <li class="feature-item">
+                  <svg class="feature-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                    <polyline points="2 17 12 22 22 17"></polyline>
+                    <polyline points="2 12 12 17 22 12"></polyline>
+                  </svg>
+                  <span>Interactive 3D visuals & micro-animations</span>
+                </li>
+                <li class="feature-item">
+                  <svg class="feature-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                    <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                  </svg>
+                  <span>Fluid mobile, tablet & desktop scaling</span>
+                </li>
+                <li class="feature-item">
+                  <svg class="feature-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+                  </svg>
+                  <span>Pixel-perfect custom UI/UX typography</span>
+                </li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Service Card 2: Backend & Node.js -->
+          <article class="glass-card">
+            <div class="card-content">
+              <div class="card-tag-wrap">
+                <span class="card-tag">02 — Node.js & Full-Stack Backend</span>
+              </div>
+              <h3 class="card-heading">Powerful functionality behind the scenes.</h3>
+              <p class="card-desc">
+                Beyond stunning visuals, I build custom backend logic, secure authentication, scalable databases, and custom REST APIs with JavaScript and Node.js.
+              </p>
+
+              <ul class="card-features">
+                <li class="feature-item">
+                  <svg class="feature-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="16 18 22 12 16 6"></polyline>
+                    <polyline points="8 6 2 12 8 18"></polyline>
+                  </svg>
+                  <span>Node.js server-side logic & custom APIs</span>
+                </li>
+                <li class="feature-item">
+                  <svg class="feature-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                  </svg>
+                  <span>Secure user authentication & permissions</span>
+                </li>
+                <li class="feature-item">
+                  <svg class="feature-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                    <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                    <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+                  </svg>
+                  <span>SQL databases & structured querying</span>
+                </li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Service Card 3: 95+ Speed & Local SEO -->
+          <article class="glass-card">
+            <div class="card-content">
+              <div class="card-tag-wrap">
+                <span class="card-tag">03 — 95+ PageSpeed & Google SEO</span>
+              </div>
+              <h3 class="card-heading">Rank on Google & convert local visitors.</h3>
+              <p class="card-desc">
+                I engineer SEO-optimized web foundations with 95+ Google PageSpeed load times to help local businesses rank on Google searches and attract real customers.
+              </p>
+
+              <ul class="card-features">
+                <li class="feature-item">
+                  <svg class="feature-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                  </svg>
+                  <span>95+ PageSpeed lightning load times</span>
+                </li>
+                <li class="feature-item">
+                  <svg class="feature-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                  </svg>
+                  <span>Local Google search schema & ranking</span>
+                </li>
+                <li class="feature-item">
+                  <svg class="feature-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                  </svg>
+                  <span>Clean semantic HTML5 structure</span>
+                </li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Service Card 4: AI Agents for Local Businesses -->
+          <article class="glass-card">
+            <div class="card-content">
+              <div class="card-tag-wrap">
+                <span class="card-tag">04 — Website AI Agents</span>
+              </div>
+              <h3 class="card-heading">Smart automation built for local businesses.</h3>
+              <p class="card-desc">
+                I build intelligent website agents tailored for local businesses, automating client inquiries, qualifying leads, and providing 24/7 instant interactive support.
+              </p>
+
+              <ul class="card-features">
+                <li class="feature-item">
+                  <svg class="feature-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+                    <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                    <line x1="15" y1="9" x2="15.01" y2="9"></line>
+                  </svg>
+                  <span>Automated 24/7 client communication</span>
+                </li>
+                <li class="feature-item">
+                  <svg class="feature-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  <span>Instant customer lead qualification</span>
+                </li>
+                <li class="feature-item">
+                  <svg class="feature-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 20h9"></path>
+                    <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                  </svg>
+                  <span>Custom business knowledge integration</span>
+                </li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Section 4: Call to Action Glass Card -->
+      <section class="about-cta-section">
+        <article class="glass-story-card cta-glass-card">
+          <div class="cta-inner">
+            <span class="story-tag">LET'S COLLABORATE</span>
+            <h2 class="cta-title">READY TO ELEVATE YOUR LOCAL BUSINESS ONLINE?</h2>
+            <p class="cta-description">
+              Whether you need a high-impact 3D website, a robust Node.js backend engine, or dominant Google search ranking, let's create something extraordinary together.
+            </p>
+            <div class="cta-actions">
+              <a href="index.html#portfolio" class="cta-btn-primary">View My Showcase</a>
+              <a href="contact.html" class="cta-btn-secondary">Start a Conversation</a>
+            </div>
+          </div>
+        </article>
+      </section>
+    </div>
+  </main>
+
+  <!-- =========================================
+       SCENIC ILLUSTRATION FOOTER (Inspiration Design)
+       ========================================= -->
+  <footer class="scene-footer" id="contact">
+    <!-- Center Giant Wordmark Stage (baba -> muzammil) -->
+    <div class="scene-typography-stage">
+      <h2 class="scene-brand-wordmark">muzammil</h2>
+    </div>
+
+    <!-- Bottom Translucent Glass Navigation Bar -->
+    <div class="scene-footer-bottom-wrap">
+      <div class="scene-footer-nav-row">
+        <!-- Center/Left: Social Media Links & Gmail -->
+        <div class="scene-footer-socials">
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="footer-social-pill">Facebook</a>
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="footer-social-pill">Instagram</a>
+          <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="footer-social-pill">X</a>
+          <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="footer-social-pill">GitHub</a>
+          <a href="mailto:muzammilkhanjpj@gmail.com" class="footer-social-pill footer-email-pill">muzammilkhanjpj@gmail.com</a>
+        </div>
+
+        <!-- Right: Quick Links -->
+        <div class="scene-footer-right">
+          <a href="index.html#hero">Home</a>
+          <a href="index.html#portfolio">Showcase</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+
+      <!-- Bottom Micro-Disclaimer tailored to Pro Web/UI Niche -->
+      <div class="scene-footer-disclaimer-wrap">
+        <p class="scene-footer-disclaimer-text">
+          Muzammil Khan is an independent Pro UI/UX Designer & Full-Stack Web Developer crafting high-performance digital experiences, bespoke responsive interfaces, Node.js server architectures, and Google-ranking SEO solutions for modern businesses.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

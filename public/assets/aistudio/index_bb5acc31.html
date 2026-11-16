@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Muzammil - UI/UX & Web Designer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Outfit:wght@600;700;800;900&family=Syne:wght@700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Glassmorphism Navbar -->
+  <header class="navbar-wrapper">
+    <nav class="glass-navbar">
+      <!-- Left side: Brand Logo & Name -->
+      <a href="#hero" class="nav-brand">
+        <img src="logo.png" alt="Muzammil Logo" class="nav-logo-img" />
+        <span class="brand-text">MUZAMMIL</span>
+      </a>
+
+      <!-- Right side: Hamburger Button (Universal across Desktop, Tablet, Mobile) -->
+      <button class="hamburger-btn" id="hamburger-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span class="hamburger-bar bar-1"></span>
+        <span class="hamburger-bar bar-2"></span>
+        <span class="hamburger-bar bar-3"></span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- Right-Side Slide-in Glassmorphism Drawer Menu -->
+  <div class="drawer-overlay" id="drawer-overlay"></div>
+  <aside class="glass-drawer" id="glass-drawer" aria-hidden="true">
+    <div class="drawer-header">
+      <span class="drawer-title">Navigation</span>
+      <button class="close-drawer-btn" id="close-drawer-btn" aria-label="Close menu">&times;</button>
+    </div>
+
+    <ul class="drawer-links">
+      <li class="drawer-item">
+        <a href="#hero" class="drawer-link">
+          <span class="link-number">01</span>
+          <span class="link-text">Home</span>
+        </a>
+      </li>
+      <li class="drawer-item">
+        <a href="#portfolio" class="drawer-link">
+          <span class="link-number">02</span>
+          <span class="link-text">Showcase</span>
+        </a>
+      </li>
+      <li class="drawer-item">
+        <a href="about.html" class="drawer-link">
+          <span class="link-number">03</span>
+          <span class="link-text">About Us</span>
+        </a>
+      </li>
+      <li class="drawer-item">
+        <a href="contact.html" class="drawer-link">
+          <span class="link-number">04</span>
+          <span class="link-text">Contact</span>
+        </a>
+      </li>
+    </ul>
+
+    <div class="drawer-footer">
+      <p class="footer-role">UI/UX & Web Designer</p>
+      <div class="drawer-socials">
+        <span>Available for Freelance & Projects</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Hero Section -->
+  <main class="hero-container" id="hero">
+    <!-- Layer 1: Background Image (Sky & Mountains) -->
+    <img src="image.png" alt="Background" class="hero-layer hero-bg" />
+    
+    <!-- Layer 2: Typography (Behind the Person's Head & Body) -->
+    <div class="hero-layer hero-text-layer">
+      <div class="hero-typography-container">
+        <h1 class="title-muzammil">MUZAMMIL</h1>
+        
+        <div class="subtitle-group">
+          <div class="subtitle-lockup">
+            <span class="accent-line"></span>
+            <div class="role-text">
+              <span>PRO UI/UX</span>
+              <span>WEB DESIGNER</span>
+            </div>
+          </div>
+          
+          <a href="#portfolio" class="hero-cta-btn" id="hero-cta">
+            <span class="cta-text">MY WORK</span>
+            <svg class="cta-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Layer 3: Foreground Person Cutout -->
+    <img src="person.png" alt="Person Foreground" class="hero-layer hero-foreground" />
+
+    <!-- Layer 4: Interactive Matrix Code Aura Canvas -->
+    <canvas id="matrix-canvas" class="hero-layer hero-canvas"></canvas>
+  </main>
+
+  <!-- =========================================
+       SECTION 2 (Why Choose Me)
+       ========================================= -->
+  <section class="brand-section section-why" id="why">
+    <div class="section-container">
+      <div class="section-header">
+        <h1 class="section-title">WHY CHOOSE ME</h1>
+      </div>
+
+      <!-- Glassmorphic Cards Grid -->
+      <div class="glass-cards-grid">
+        <!-- Card 1 -->
+        <article class="glass-card">
+          <div class="card-content">
+            <div class="card-tag-wrap">
+              <span class="card-tag">01 — Responsive by Design</span>
+            </div>
+            <h3 class="card-heading">Modern experiences on every screen.</h3>
+            <p class="card-desc">
+              I create clean, user-focused interfaces that look and work beautifully across mobile, tablet, and desktop.
+            </p>
+
+            <div class="card-action-wrap">
+              <button class="card-action-btn" aria-label="Launch responsive design project">Launch Project</button>
+            </div>
+
+            <ul class="card-features">
+              <li class="feature-item">
+                <svg class="feature-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                  <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                </svg>
+                <span>Fluid mobile, tablet & desktop scaling</span>
+              </li>
+              <li class="feature-item">
+                <svg class="feature-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                <span>Instant responsiveness & speed</span>
+              </li>
+              <li class="feature-item">
+                <svg class="feature-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+                </svg>
+                <span>Pixel-perfect cross-platform layout</span>
+              </li>
+              <li class="feature-item">
+                <svg class="feature-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                  <line x1="8" y1="21" x2="16" y2="21"></line>
+                  <line x1="12" y1="17" x2="12" y2="21"></line>
+                </svg>
+                <span>Touch & gesture optimized controls</span>
+              </li>
+            </ul>
+
+            <div class="card-footer-note">Need custom responsive work?</div>
+          </div>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="glass-card">
+          <div class="card-content">
+            <div class="card-tag-wrap">
+              <span class="card-tag">02 — SEO Optimized</span>
+            </div>
+            <h3 class="card-heading">Built to be discovered.</h3>
+            <p class="card-desc">
+              I build SEO-friendly websites with optimized structure and performance to help your business get discovered on Google.
+            </p>
+
+            <div class="card-action-wrap">
+              <button class="card-action-btn" aria-label="Boost search engine ranking">Boost Ranking</button>
+            </div>
+
+            <ul class="card-features">
+              <li class="feature-item">
+                <svg class="feature-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <span>Semantic HTML5 & meta schemas</span>
+              </li>
+              <li class="feature-item">
+                <svg class="feature-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                </svg>
+                <span>95+ Google PageSpeed scores</span>
+              </li>
+              <li class="feature-item">
+                <svg class="feature-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+                <span>OpenGraph & social share previews</span>
+              </li>
+              <li class="feature-item">
+                <svg class="feature-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                  <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+                <span>Google search indexing & ranking</span>
+              </li>
+            </ul>
+
+            <div class="card-footer-note">Need a comprehensive SEO audit?</div>
+          </div>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="glass-card">
+          <div class="card-content">
+            <div class="card-tag-wrap">
+              <span class="card-tag">03 — Built Beyond the Frontend</span>
+            </div>
+            <h3 class="card-heading">Powerful functionality behind the scenes.</h3>
+            <p class="card-desc">
+              I don't just build the frontend. I develop backend logic, authentication, databases, APIs, SQL queries, and custom functionality your website needs.
+            </p>
+
+            <div class="card-action-wrap">
+              <button class="card-action-btn" aria-label="Build full-stack backend architecture">Build Full-Stack</button>
+            </div>
+
+            <ul class="card-features">
+              <li class="feature-item">
+                <svg class="feature-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="16 18 22 12 16 6"></polyline>
+                  <polyline points="8 6 2 12 8 18"></polyline>
+                </svg>
+                <span>Custom backend logic & REST APIs</span>
+              </li>
+              <li class="feature-item">
+                <svg class="feature-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+                <span>Secure user authentication & roles</span>
+              </li>
+              <li class="feature-item">
+                <svg class="feature-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                  <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                  <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+                </svg>
+                <span>Scalable databases & SQL queries</span>
+              </li>
+              <li class="feature-item">
+                <svg class="feature-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                </svg>
+                <span>End-to-end full stack architecture</span>
+              </li>
+            </ul>
+
+            <div class="card-footer-note">Need custom backend architecture?</div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================
+       SECTION 3 (My Portfolio & Integrated Scenic Landscape Footer)
+       ========================================= -->
+  <section class="brand-section section-portfolio" id="portfolio">
+    <div class="portfolio-content-wrap">
+      <div class="section-header">
+        <h2 class="section-title">MY PORTFOLIO</h2>
+      </div>
+    </div>
+
+    <!-- Integrated Scenic Footer Stage (Part of the same landscape) -->
+    <footer class="scene-footer" id="contact">
+      <!-- Center Giant Wordmark Stage (baba -> muzammil) -->
+      <div class="scene-typography-stage">
+        <h2 class="scene-brand-wordmark">muzammil</h2>
+      </div>
+
+      <!-- Bottom Translucent Glass Navigation Bar -->
+      <div class="scene-footer-bottom-wrap">
+        <div class="scene-footer-nav-row">
+          <!-- Center/Left: Social Media Links & Gmail -->
+          <div class="scene-footer-socials">
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="footer-social-pill">Facebook</a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="footer-social-pill">Instagram</a>
+            <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="footer-social-pill">X</a>
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="footer-social-pill">GitHub</a>
+            <a href="mailto:muzammilkhanjpj@gmail.com" class="footer-social-pill footer-email-pill">muzammilkhanjpj@gmail.com</a>
+          </div>
+
+          <!-- Right: Quick Links -->
+          <div class="scene-footer-right">
+            <a href="#hero">Home</a>
+            <a href="#portfolio">Showcase</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+          </div>
+        </div>
+
+        <!-- Bottom Micro-Disclaimer tailored to Pro Web/UI Niche -->
+        <div class="scene-footer-disclaimer-wrap">
+          <p class="scene-footer-disclaimer-text">
+            Muzammil Khan is an independent Pro UI/UX Designer & Full-Stack Web Developer crafting high-performance digital experiences, bespoke responsive interfaces, Node.js server architectures, and Google-ranking SEO solutions for modern businesses.
+          </p>
+        </div>
+      </div>
+    </footer>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
